@@ -9,53 +9,58 @@
     href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
     />
 </head>
-<body>
-    <div class="container">
-        <div class="jumbotron text-center">
-            <h1>Mission to Mars</h1>
-            <p><a class="btn-primary btn-lg" href="/scrape"
-                role="button">Scrape New Data</a></p>
-        </div>
-    </div>
-    <!-- Mars News -->
-    <div class="row" id="mars-news">
-        <div class="col-md-8">
-          <div class="media">
-            <div class="media-body">
-            <h2>Latest Mars News</h2>
-            <h4 class="media-heading">{{mars.news_title}}</h4>
-            <p>{{mars.news_paragraph}}</p>
-            </div>
-          </div>
-        </div>
-        <div class="col-md-4">
-            <!-- Mars Facts -->
-            <div class="row" id="mars-facts">
-                <h4>Mars Facts</h4>
-                {{ mars.facts | safe }}
-            </div>
-        </div>
+<body class="bg-danger">
+    <div class="wrapper">
+        <div class="container">
+            <div class="jumbotron text-center" style="background-image: url(https://upload.wikimedia.org/wikipedia/commons/2/23/Mars_Wikivoyage_banner.jpg);">
+                <h1><strong>Mission to Mars</strong></h1>
+                <p><a class="btn-primary btn-lg" href="/scrape"
+                    role="button">Scrape New Data</a></p>
+                <h6>Image Credit:<a href="https://commons.wikimedia.org/wiki/File:Mars_Wikivoyage_banner.jpg">ESA &amp; MPS for OSIRIS Team MPS/UPD/LAM/IAA/RSSD/INTA/UPM/DASP/IDA, CC BY-SA IGO 3.0</a>, <a href="https://creativecommons.org/licenses/by-sa/3.0/igo/deed.en">CC BY-SA 3.0 IGO</a>, via Wikimedia Commons</h6>
 
-    </div>
-    <!--Featured Image and Facts Table-->
-    <div class="row" id="mars-featured-image">
-        <div class="col-md-8">
-          <h2>Featured Mars Image</h2>
-          <img src="{{mars.featured_image }}" class="img-responsive" alt="Responsive image"/>
+            </div>
         </div>
-        <div class="row">
+        <div class="container-fluid">
+            <!--Featured Image-->
+            <div class="row" id="mars-featured-image">
+                <div class="col-md-6">
+                    <h2 class="text-info">Featured Mars Image</h2>
+                    <img src="{{mars.featured_image }}" class="img-responsive img-rounded" alt="Responsive image"/>
+                </div>
+                <!-- Mars Facts -->
+                <div class="col-md-6">
+                    <h2 class="text-info">Mars Facts</h2>
+                    {{ mars.facts | safe }}
+                </div>
+            </div>
+        </div>
+        <div class="container-fluid">
+            <!-- Mars News -->
+            <div class="row" id="mars-news">
+                <div class="col-md-4">
+                <div class="media">
+                    <div class="media-body">
+                    <h2 class="text-info">Latest Mars News</h2>
+                    <h4 class="media-heading">{{mars.news_title}}</h4>
+                    {{mars.news_paragraph}}
+                    </div>
+                </div>
+                </div>
+   
             <!--hemispheres-->
-            <div class="col-md-2" id="mars-hemispheres">
-                <h2>Mars Hemispheres</h2>
-                {% for hemispheres in mars.hemi_images %}
-                    <img src="{{ hemispheres.img_url }}" class="img-responsive" alt="Responsive images" style="grid-auto-rows: auto;"/>
-                    <div class="row" id=img_title>
-                        <h6>{{hemispheres.img_title}}</h6>
+                <div class="col-md-8" id="mars-hemispheres">
+                    <h2 class="text-info text-center">Mars Hemispheres</h2>
+                    {% for hemispheres in mars.hemi_images %}
+                    <div class="col-md-3">
+                    <img src="{{ hemispheres.img_url }}" class="img-responsive img-rounded" alt="Responsive images"/>
+                        <div class="row" id=img_title>
+                            <h6><strong>{{hemispheres.img_title}}</strong></h6>
+                        </div>
                     </div>
                     {% endfor %}
+                </div>
             </div>
         </div> 
     </div>
-
 </body>
 </html>
